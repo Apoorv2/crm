@@ -364,28 +364,9 @@ docker-compose exec mongodb mongosh -u admin -p password123 --authenticationData
 docker-compose exec mongodb mongosh -u admin -p password123 --authenticationDatabase admin crm --eval "show collections"
 ```
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 🆘 Support
-
-For support and questions:
-- Check the documentation
-- Review the technical specifications
-- Open an issue on GitHub
 
 ---
 
-**Built with ❤️ for Palmonas - Unified Order Management Made Simple**
 
 ---
 
