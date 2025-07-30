@@ -769,7 +769,3 @@ spec:
 - **System Resource Usage**
 
 ---
-
-**Document Version**: 1.0  
-**Last Updated**: January 2024  
-**Author**: Palmonas Development Team 
