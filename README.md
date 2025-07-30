@@ -1,401 +1,209 @@
-# 🏢 Palmonas CRM - Admin Portal for Multi-Platform Order Management
+# 🏪 Palmonas CRM - Admin Portal
 
-A comprehensive **Admin CRM Portal** for managing customer orders from multiple e-commerce platforms (Amazon, Blinkit, Organic, Flipkart, Swiggy). Built as an MVP with modern full-stack technologies and containerized deployment.
+A comprehensive **Admin CRM Portal** for managing customer orders from multiple e-commerce platforms (Amazon, Blinkit, Flipkart, Swiggy, Organic Website).
 
-## 🚀 Features
+## 🚀 Quick Start
 
-### **Core Features**
-- **Unified Order Dashboard** - Centralized view of all platform orders
-- **Advanced Search & Filtering** - By date, platform, status, customer
-- **Order Status Management** - Update and track order statuses
-- **Real-time Analytics** - Charts, metrics, and performance insights
-- **User Management** - Role-based access control (Admin, Support, Read-only)
-- **Multi-Platform Support** - Amazon, Blinkit, Organic, Flipkart, Swiggy
+### **Prerequisites**
+- Docker & Docker Compose
+- Node.js 18+ (for development)
 
-### **Technical Features**
-- **Auto-Seeding** - Database automatically populated with sample data on startup
-- **Health Checks** - Robust startup sequence with dependency management
-- **Persistent Data** - MongoDB data persistence across restarts
-- **Security** - JWT authentication, role-based permissions, input validation
-- **Scalable Architecture** - Modular design ready for production scaling
-
-## 🛠 Tech Stack
-
-### **Frontend**
-- **React 18** with TypeScript
-- **Material-UI** for modern UI components
-- **Chart.js** for analytics visualization
-- **React Router** for navigation
-- **Axios** for API communication
-
-### **Backend**
-- **Node.js** with Express.js
-- **MongoDB** with Mongoose ODM
-- **JWT** for authentication
-- **bcryptjs** for password hashing
-- **Express Validator** for input validation
-
-### **Infrastructure**
-- **Docker** containerization
-- **Docker Compose** for multi-service orchestration
-- **MongoDB** with persistent storage
-- **Health checks** for reliable startup
-
-## 📋 Prerequisites
-
-- **Docker** and **Docker Compose**
-- **Git** for cloning the repository
-- **Node.js 18+** (for local development)
-
----
-
-## 🎯 **Quick Start for Interviewers (Zero Technical Knowledge Required)**
-
-### **Step 1: Install Docker Desktop**
-1. Download from [docker.com](https://www.docker.com/products/docker-desktop/)
-2. Install and start Docker Desktop
-3. Wait for Docker to be running (green icon in system tray)
-
-### **Step 2: Clone and Run**
+### **One-Command Setup**
 ```bash
-# Open terminal/command prompt and run these commands:
-git clone https://github.com/Apoorv2/crm.git
-cd crm
+# Clone and start
+git clone <repository-url>
+cd CRM
+docker-compose up -d
+
+# Access the application
+Frontend: http://localhost:3002
+Backend API: http://localhost:5000
+```
+
+### **Default Login Credentials**
+```
+Email: admin@palmonas.com
+Password: admin123
+```
+
+## 🎯 **Key Features**
+
+### **✅ Core CRM Features**
+- **Unified Order Dashboard**: View orders from all platforms in one place
+- **Advanced Search & Filtering**: By date, platform, status, customer
+- **Order Status Management**: Update and track order status changes
+- **Analytics & Reports**: Revenue trends, platform performance, customer insights
+- **User Management**: Role-based access control (Admin, Support, Read-only)
+
+### **✅ Advanced Integration Features**
+- **Order Ingestion Service**: Background jobs fetch orders every 15-30 minutes
+- **Real-time Webhooks**: Process order notifications from platforms instantly
+- **Platform Integration Layer**: Handle API differences across 5+ platforms
+- **Data Transformation**: Convert platform-specific formats to unified schema
+- **Mock Data System**: Realistic demo data for all platforms
+
+### **✅ Production-Ready Architecture**
+- **Scalable Design**: Easy to add new platforms and scale horizontally
+- **Fault Tolerance**: Graceful error handling and retry mechanisms
+- **Security**: JWT authentication, role-based permissions, input validation
+- **Monitoring**: Health checks, service status, comprehensive logging
+
+## 🔧 **Testing Advanced Features**
+
+### **1. Test Order Ingestion Service**
+```bash
+# Test background jobs and webhook processing
+docker-compose exec backend npm run test-ingestion
+```
+
+### **2. Test Webhook Endpoints**
+```bash
+# Test Amazon webhook
+curl -X POST http://localhost:5000/api/webhooks/amazon \
+  -H "Content-Type: application/json" \
+  -d '{
+    "amazon_order_id": "AMZ-TEST-001",
+    "order_date": "2024-01-15T15:30:00Z",
+    "status": "confirmed",
+    "buyer_name": "Test Customer",
+    "buyer_email": "test@example.com",
+    "items": [{"asin": "B08N5WRWNW", "title": "Test Earrings", "quantity": 1, "price": 2500}],
+    "total_amount": 2500
+  }'
+```
+
+### **3. Check Service Status**
+```bash
+# Get webhook service status
+curl http://localhost:5000/api/webhooks/status
+```
+
+## 📊 **Sample Data Includes**
+
+- **12 Sample Orders** with realistic demi-fine jewelry products
+- **15+ Unique Products**: Diamond Huggie Hoops, Golden Flutter Studs, Pearl Drape Drops, etc.
+- **5 Platforms**: Amazon, Blinkit, Flipkart, Swiggy, Organic Website
+- **Multiple Customers** with complete order history
+- **Realistic Pricing**: 1,800 - 4,500 INR per product
+
+## 🏗️ **Architecture Highlights**
+
+### **Order Ingestion & Integration**
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   PLATFORMS     │    │   WEBHOOKS      │    │   BACKGROUND    │
+│                 │    │                 │    │     JOBS        │
+│  • Amazon       │    │  • Real-time    │    │  • Scheduled    │
+│  • Blinkit      │    │    notifications │    │    fetching     │
+│  • Flipkart     │    │  • Order updates │    │  • Every 15min  │
+│  • Swiggy       │    │  • Status changes│    │  • Every 30min  │
+│  • Organic      │    │                 │    │                 │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+                                │                      │
+                    ┌───────────▼──────────────────────▼───────────┐
+                    │           ORDER INGESTION SERVICE            │
+                    │  • Webhook Processing • Background Jobs      │
+                    │  • Data Validation • Error Handling          │
+                    └───────────────────┬──────────────────────────┘
+                                        │
+                    ┌───────────────────▼──────────────────────────┐
+                    │         PLATFORM INTEGRATION LAYER           │
+                    │  • API Clients • Data Transformation         │
+                    │  • Status Mapping • Mock Data                │
+                    └───────────────────┬──────────────────────────┘
+                                        │
+                    ┌───────────────────▼──────────────────────────┐
+                    │              DATABASE                        │
+                    │  • Unified Order Format • Platform Data      │
+                    │  • Audit Trail • Analytics                   │
+                    └──────────────────────────────────────────────┘
+```
+
+## 🚀 **Quick Start for Interviewers**
+
+### **1. Start Everything**
+```bash
 docker-compose up -d
 ```
 
-### **Step 3: Access the Application**
-- **Frontend (Web App)**: http://localhost:3002
-- **Backend API**: http://localhost:5000
-- **MongoDB**: localhost:27017
-
-### **Step 4: Login**
-Use these pre-created credentials:
-
-| **Role** | **Email** | **Password** | **Access Level** |
-|----------|-----------|--------------|------------------|
-| **Admin** | `admin@palmonas.com` | `admin123` | Full access |
-| **Support** | `support@palmonas.com` | `support123` | Order management |
-| **Read-only** | `readonly@palmonas.com` | `readonly123` | View only |
-
-### **Step 5: Demo Script**
-1. **Login** as admin@palmonas.com / admin123
-2. **Dashboard** - Show real-time metrics and jewelry data
-3. **Orders** - Demonstrate filtering, search, and status updates
-4. **Analytics** - Show charts and platform performance
-5. **Users** - Show user management (admin only)
-
-### **Troubleshooting**
+### **2. Verify Services**
 ```bash
-# If containers don't start:
-docker-compose down
-docker-compose up -d
-
-# If ports are busy:
-# Change ports in docker-compose.yml (3002 → 3003)
-
-# To see logs:
-docker-compose logs
-
-# To reset everything:
-docker-compose down -v
-docker-compose up -d
-```
-
----
-
-## 🚀 **Detailed Quick Start (For Developers)**
-
-### **1. Clone the Repository**
-```bash
-git clone https://github.com/Apoorv2/crm.git
-cd crm
-```
-
-### **2. Start the Application**
-```bash
-docker-compose up -d
-```
-
-### **3. Verify Services are Running**
-```bash
+# Check if all services are running
 docker-compose ps
+
+# Check backend logs
+docker-compose logs backend
 ```
 
-**Expected output:**
-```
-NAME           STATUS                    PORTS
-crm_backend    Up 2 minutes (healthy)   0.0.0.0:5000->5000/tcp
-crm_frontend   Up 2 minutes             0.0.0.0:3002->3000/tcp
-crm_mongodb    Up 2 minutes (healthy)   0.0.0.0:27017->27017/tcp
-```
-
-### **4. Access the Application**
+### **3. Access Application**
 - **Frontend**: http://localhost:3002
-- **Backend API**: http://localhost:5000
-- **MongoDB**: localhost:27017
+- **Login**: admin@palmonas.com / admin123
 
-### **5. Login Credentials**
-The system automatically seeds the database with sample users:
+### **4. Demo Script**
+1. **Dashboard**: Show analytics and summary widgets
+2. **Orders Page**: Demonstrate filtering, search, status updates
+3. **Analytics**: Show revenue trends and platform performance
+4. **Advanced Features**: Test order ingestion and webhooks
 
-```
-Admin User:
-- Email: admin@palmonas.com
-- Password: admin123
-
-Support User:
-- Email: support@palmonas.com
-- Password: support123
-
-Read-only User:
-- Email: readonly@palmonas.com
-- Password: readonly123
-```
-
-## 🔧 Auto-Seeding Feature
-
-The CRM includes an intelligent auto-seeding system that:
-
-- **Automatically detects** if the database is empty
-- **Populates sample data** including users and orders
-- **Ensures consistent startup** regardless of container restarts
-- **Maintains data integrity** with proper password hashing
-- **Provides immediate access** to all features
-
-### **Sample Data Includes:**
-- **3 Users** with different roles (Admin, Support, Read-only)
-- **12 Sample Orders** across all platforms with recent dates
-- **15+ Jewelry Products** including earrings, necklaces, rings, bracelets, and sets
-- **Realistic jewelry data** with customers, items, and statuses
-- **Analytics-ready data** for dashboard and reports
-
-### **Jewelry Products Included:**
-- Diamond Huggie Hoop Earrings (₹3,500)
-- Golden Flutter Studs (₹1,800)
-- Pearl Drape Drops (₹2,600)
-- Tennis Bracelet (₹4,500)
-- Statement Cocktail Ring (₹3,800)
-- Layered Chain Necklace (₹2,800)
-- Earrings & Necklace Set (₹5,200)
-- And 8+ more jewelry items
-
-## 📊 API Endpoints
-
-### **Authentication**
-- `POST /api/auth/login` - User login
-- `POST /api/auth/register` - User registration (Admin only)
-- `GET /api/auth/me` - Get current user profile
-
-### **Orders**
-- `GET /api/orders` - List orders with filtering
-- `GET /api/orders/:id` - Get specific order
-- `PUT /api/orders/:id/status` - Update order status
-- `POST /api/orders` - Create new order
-
-### **Analytics**
-- `GET /api/analytics/dashboard` - Dashboard overview
-- `GET /api/analytics/trends` - Order and revenue trends
-- `GET /api/analytics/platforms` - Platform performance
-
-### **Users**
-- `GET /api/users` - List users (Admin only)
-- `POST /api/users` - Create user (Admin only)
-- `PUT /api/users/:id` - Update user (Admin only)
-
-## 🛠 Development
-
-### **Local Development**
+### **5. Test Advanced Features**
 ```bash
-# Start services
-docker-compose up -d
+# Test order ingestion service
+docker-compose exec backend npm run test-ingestion
 
-# View logs
-docker-compose logs -f
-
-# Access backend shell
-docker-compose exec backend sh
-
-# Access frontend shell
-docker-compose exec frontend sh
-
-# Manual database seeding
-docker-compose exec backend npm run seed
-
-# Add more sample orders
-docker-compose exec backend npm run seed-orders 50
+# Test webhook processing
+curl -X POST http://localhost:5000/api/webhooks/amazon -H "Content-Type: application/json" -d '{"amazon_order_id":"TEST-001","order_date":"2024-01-15T15:30:00Z","status":"confirmed","buyer_name":"Test","buyer_email":"test@example.com","items":[{"asin":"B08N5WRWNW","title":"Test","quantity":1,"price":2500}],"total_amount":2500}'
 ```
 
-### **Database Schema**
+## 🔧 **Troubleshooting**
 
-#### **User Model**
-```javascript
-{
-  name: String,
-  email: String (unique),
-  password: String (hashed),
-  role: String (admin/support/readonly),
-  isActive: Boolean,
-  permissions: [String],
-  lastLogin: Date,
-  createdAt: Date
-}
-```
-
-#### **Order Model**
-```javascript
-{
-  orderNumber: String (unique),
-  platform: String,
-  platformOrderId: String,
-  customer: {
-    name: String,
-    email: String,
-    phone: String,
-    address: Object
-  },
-  items: [{
-    name: String,
-    quantity: Number,
-    unitPrice: Number,
-    totalPrice: Number
-  }],
-  status: String,
-  total: Number,
-  orderDate: Date,
-  statusHistory: [Object]
-}
-```
-
-## 🔧 Configuration
-
-### **Environment Variables**
-Create a `.env` file based on `.env.example`:
-
-```env
-# Database
-MONGODB_URI=mongodb://admin:password123@mongodb:27017/crm?authSource=admin
-
-# JWT
-JWT_SECRET=your-super-secret-jwt-key-change-in-production
-
-# Server
-PORT=5000
-NODE_ENV=development
-```
-
-## 🚀 Deployment
-
-### **Production Deployment**
-1. Update environment variables
-2. Set `NODE_ENV=production`
-3. Use production MongoDB instance
-4. Configure proper JWT secrets
-5. Set up SSL certificates
-
-### **Monitoring**
-- Health check endpoints available
-- Log aggregation recommended
-- Database monitoring
-- Performance metrics
-
-## 🔍 **Troubleshooting Guide**
-
-### **Common Issues and Solutions**
-
-#### **1. Port Already in Use**
+### **Port Conflicts**
 ```bash
-# Check what's using the ports
-netstat -an | grep 3002
-netstat -an | grep 5000
-
-# Stop conflicting services or change ports in docker-compose.yml
+# If ports are in use, stop conflicting services
+sudo lsof -i :3002 -i :5000 -i :27017
+# Or change ports in docker-compose.yml
 ```
 
-#### **2. Docker Not Running**
+### **Database Issues**
 ```bash
-# Start Docker Desktop
-# Wait for Docker to be fully running (green icon)
-```
-
-#### **3. Containers Not Starting**
-```bash
-# Check Docker logs
-docker-compose logs
-
-# Restart containers
-docker-compose down
-docker-compose up -d
-```
-
-#### **4. Database Empty**
-```bash
-# Reset with fresh data
+# Reset database
 docker-compose down -v
 docker-compose up -d
 ```
 
-#### **5. Permission Issues**
+### **Service Not Starting**
 ```bash
-# On Linux/Mac, ensure Docker has proper permissions
-sudo usermod -aG docker $USER
-# Log out and log back in
-```
-
-### **Useful Commands**
-```bash
-# View all logs
-docker-compose logs -f
-
-# View specific service logs
+# Check logs
 docker-compose logs backend
-docker-compose logs frontend
 docker-compose logs mongodb
 
-# Check service status
-docker-compose ps
-
-# Restart specific service
+# Restart services
 docker-compose restart backend
-
-# Access MongoDB shell
-docker-compose exec mongodb mongosh -u admin -p password123 --authenticationDatabase admin crm
-
-# View database collections
-docker-compose exec mongodb mongosh -u admin -p password123 --authenticationDatabase admin crm --eval "show collections"
 ```
 
+## 📚 **Documentation**
+
+- **Technical Document**: `TECHNICAL_DOCUMENT.md` - Detailed system design and architecture
+- **Interview Guide**: `INTERVIEW_GUIDE.md` - How to demonstrate advanced features
+- **API Documentation**: Available at `http://localhost:5000/api` when running
+
+## 🎯 **Key Technical Highlights**
+
+### **✅ Production-Ready Features**
+- **Order Ingestion Service**: Background jobs + webhook processing
+- **Integration Layer**: Handle 5+ platform API differences
+- **Scalable Architecture**: Easy to add new platforms
+- **Fault Tolerance**: Graceful error handling and retries
+- **Security**: JWT auth, RBAC, input validation
+- **Monitoring**: Health checks and service status
+
+### **✅ Interview-Ready**
+- **Easy Demo**: One-command startup with sample data
+- **Comprehensive**: Shows real-world problem solving
+- **Scalable**: Demonstrates production architecture thinking
+- **Well-Documented**: Clear explanations for all features
 
 ---
 
+**Ready for your interview! 🚀**
 
----
-
-## 📋 **Quick Reference Card**
-
-### **Start Application:**
-```bash
-git clone https://github.com/Apoorv2/crm.git
-cd crm
-docker-compose up -d
-```
-
-### **Access URLs:**
-- **Web App**: http://localhost:3002
-- **API**: http://localhost:5000
-- **Database**: localhost:27017
-
-### **Login Credentials:**
-- **Admin**: admin@palmonas.com / admin123
-- **Support**: support@palmonas.com / support123
-- **Read-only**: readonly@palmonas.com / readonly123
-
-### **Stop Application:**
-```bash
-docker-compose down
-```
-
-### **Reset Everything:**
-```bash
-docker-compose down -v
-docker-compose up -d
-``` 
+The system demonstrates advanced concepts like background jobs, webhook processing, platform integration, and scalable architecture - perfect for showcasing your technical skills. 

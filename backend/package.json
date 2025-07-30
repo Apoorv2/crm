@@ -8,6 +8,7 @@
     "dev": "nodemon startup.js",
     "seed": "node scripts/seed-data.js",
     "seed-orders": "node scripts/seed-orders.js",
+    "test-ingestion": "node scripts/test-ingestion.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -20,7 +21,8 @@
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.3",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "node-cron": "^3.0.3"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"

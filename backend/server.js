@@ -10,6 +10,7 @@ const authRoutes = require('./routes/auth');
 const orderRoutes = require('./routes/orders');
 const userRoutes = require('./routes/users');
 const analyticsRoutes = require('./routes/analytics');
+const webhookRoutes = require('./routes/webhooks');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -19,8 +20,7 @@ app.use(helmet());
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
     ? ['https://yourdomain.com'] 
-    : ['http://localhost:3000'],
-  credentials: true
+    : ['http://localhost:3000', 'http://localhost:3002']
 }));
 
 // Rate limiting
@@ -43,7 +43,8 @@ app.get('/health', (req, res) => {
   res.status(200).json({ 
     status: 'OK', 
     timestamp: new Date().toISOString(),
-    uptime: process.uptime()
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV || 'development'
   });
 });
 
@@ -52,6 +53,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/webhooks', webhookRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

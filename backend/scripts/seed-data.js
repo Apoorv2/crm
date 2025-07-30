@@ -653,17 +653,16 @@ async function seedOrders() {
   }
 }
 
-// Main seeding function
+// Export the main seeding function
 async function seedDatabase() {
   try {
     await connectDB();
     await seedUsers();
     await seedOrders();
-    console.log('Database seeded successfully!');
-    process.exit(0);
+    console.log('✅ Database seeding completed successfully');
   } catch (error) {
-    console.error('Seeding failed:', error);
-    process.exit(1);
+    console.error('❌ Error seeding database:', error);
+    throw error;
   }
 }
 
@@ -672,4 +671,8 @@ if (require.main === module) {
   seedDatabase();
 }
 
-module.exports = { seedDatabase, seedUsers, seedOrders }; 
+module.exports = {
+  seedDatabase,
+  seedUsers,
+  seedOrders
+}; 
