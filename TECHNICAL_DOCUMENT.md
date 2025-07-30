@@ -4,30 +4,102 @@
 1. [System Design](#system-design)
 2. [Architecture Overview](#architecture-overview)
 3. [Assumptions](#assumptions)
-4. [Features Implemented](#features-implemented)
-5. [Scalability & Fault Tolerance](#scalability--fault-tolerance)
-6. [Security Implementation](#security-implementation)
-7. [Database Design](#database-design)
-8. [API Design](#api-design)
-9. [Deployment Strategy](#deployment-strategy)
-10. [Future Enhancements](#future-enhancements)
+4. [AI Tools](#ai-tools)
+5. [Features Implemented](#features-implemented)
+6. [Scalability & Fault Tolerance](#scalability--fault-tolerance)
+7. [Security Implementation](#security-implementation)
+8. [Database Design](#database-design)
+9. [API Design](#api-design)
+10. [Deployment Strategy](#deployment-strategy)
+11. [Future Enhancements](#future-enhancements)
 
-## 🏗 System Design
+## �� System Design
 
-### High-Level Architecture
+### Complete System Architecture
 
 ```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              PALMONAS CRM SYSTEM                            │
+└─────────────────────────────────────────────────────────────────────────────┘
+
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Frontend      │    │   Backend       │    │   Database      │
-│   (React)       │◄──►│   (Node.js)     │◄──►│   (MongoDB)     │
-│   Port: 3000    │    │   Port: 5000    │    │   Port: 27017   │
+│   USER/ADMIN    │    │   BROWSER       │    │   MOBILE        │
+│   INTERFACE     │    │   (Chrome,      │    │   (Future)      │
+│                 │    │    Firefox,     │    │                 │
+│  • Dashboard    │    │    Safari)      │    │  • Responsive   │
+│  • Orders       │    │                 │    │    Design       │
+│  • Analytics    │    │  • React App    │    │                 │
+│  • Users        │    │  • Material-UI  │    │                 │
+└─────────┬───────┘    │  • TypeScript   │    └─────────────────┘
+          │            └─────────┬───────┘
+          │                      │
+          │            ┌─────────▼───────┐
+          │            │   FRONTEND      │
+          │            │   (Port 3002)   │
+          │            │                 │
+          │            │  • React 18     │
+          │            │  • TypeScript   │
+          │            │  • Material-UI  │
+          │            │  • Chart.js     │
+          │            │  • Axios        │
+          │            └─────────┬───────┘
+          │                      │
+          │            ┌─────────▼───────┐
+          │            │   BACKEND API   │
+          │            │   (Port 5000)   │
+          │            │                 │
+          │            │  • Node.js      │
+          │            │  • Express.js   │
+          │            │  • JWT Auth     │
+          │            │  • bcrypt       │
+          │            │  • Validation   │
+          │            └─────────┬───────┘
+          │                      │
+          │            ┌─────────▼───────┐
+          │            │   DATABASE      │
+          │            │   (Port 27017)  │
+          │            │                 │
+          │            │  • MongoDB 6.0  │
+          │            │  • Mongoose ODM │
+          │            │  • Indexes      │
+          │            │  • Aggregation  │
+          │            └─────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           DOCKER COMPOSE ORCHESTRATION                      │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   FRONTEND      │    │   BACKEND       │    │   MONGODB       │
+│   CONTAINER     │    │   CONTAINER     │    │   CONTAINER     │
+│                 │    │                 │    │                 │
+│  • React App    │    │  • Node.js API  │    │  • Database     │
+│  • Nginx        │    │  • Express      │    │  • Persistence  │
+│  • Build Tools  │    │  • Middleware   │    │  • Auto-seed    │
+│                 │    │  • Validation   │    │                 │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
-                              │
-                              ▼
-                       ┌─────────────────┐
-                       │  External APIs  │
-                       │(Amazon, Blinkit)│
-                       └─────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              DATA FLOW                                      │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+1. User Login → JWT Token Generation → Token Storage
+2. API Request → JWT Verification → Permission Check → Database Query
+3. Data Response → Frontend Processing → UI Update
+4. Order Updates → Status History → Audit Trail
+5. Analytics → Aggregation Pipeline → Real-time Metrics
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              SECURITY LAYERS                                │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+• JWT Authentication (Token-based)
+• Role-Based Access Control (RBAC)
+• Input Validation & Sanitization
+• CORS Protection
+• Rate Limiting
+• Helmet.js Security Headers
+• bcrypt Password Hashing
 ```
 
 ### Component Architecture
@@ -129,6 +201,78 @@ Database (MongoDB)
 3. **Advanced Features**: Basic analytics and reporting
 4. **Mobile Support**: Responsive design (not native mobile app)
 5. **Third-party Integrations**: Manual API integration (no marketplace apps)
+
+## 🤖 AI Tools
+
+### Current Implementation
+
+#### **AI-Powered Development Tools Used**
+
+**Cursor AI Code Editor**
+- **Tool**: Cursor - AI-powered code editor
+- **Model**: GPT-4 based AI assistant
+- **Specific Applications**:
+  - **Code Generation**: Assisted in generating React components, Express.js routes, and MongoDB schemas
+  - **Architecture Design**: Helped design the 3-tier system architecture and component structure
+  - **API Development**: Generated RESTful API endpoints with proper validation and error handling
+  - **Database Design**: Assisted in creating MongoDB schemas with proper indexing strategies
+  - **Docker Configuration**: Generated Docker and Docker Compose configurations
+  - **Documentation**: Helped create comprehensive technical documentation and README files
+  - **Code Review**: Provided suggestions for code optimization and best practices
+  - **Debugging**: Assisted in identifying and fixing issues during development
+
+**Benefits of AI-Assisted Development:**
+- **Faster Development**: Reduced development time through AI-powered code generation
+- **Code Quality**: Ensured consistent coding standards and best practices
+- **Architecture Consistency**: Maintained architectural patterns across the application
+- **Documentation Quality**: Generated comprehensive and professional documentation
+- **Error Reduction**: AI-assisted debugging and code review reduced potential issues
+
+#### **Application-Level AI Features**
+
+**No AI tools are used in the application itself for this MVP version.**
+
+The system architecture is designed to allow future integration of AI-based features such as:
+- **Predictive Analytics**: Order forecasting and demand prediction
+- **Automated Order Processing**: AI-powered order classification and routing
+- **Customer Insights**: Sentiment analysis and customer behavior patterns
+- **Fraud Detection**: Anomaly detection in orders and transactions
+- **Chatbot Integration**: AI-powered customer support
+- **Recommendation Engine**: Product recommendations based on order history
+
+The modular API design and data structure support these future AI integrations without requiring significant architectural changes.
+
+### Future AI Integration Possibilities
+
+#### **1. Predictive Analytics**
+- **Order Forecasting**: ML models to predict order volumes
+- **Demand Prediction**: Seasonal trend analysis and inventory optimization
+- **Customer Lifetime Value**: Predictive modeling for customer retention
+
+#### **2. Automated Order Processing**
+- **Order Classification**: AI-powered categorization of orders by priority
+- **Smart Routing**: Automated assignment of orders to appropriate teams
+- **Anomaly Detection**: Identification of unusual order patterns
+
+#### **3. Customer Insights**
+- **Sentiment Analysis**: Analysis of customer feedback and reviews
+- **Behavioral Patterns**: Customer purchasing behavior analysis
+- **Churn Prediction**: Early warning systems for customer retention
+
+#### **4. Fraud Detection**
+- **Transaction Monitoring**: Real-time fraud detection in orders
+- **Pattern Recognition**: Identification of suspicious order patterns
+- **Risk Scoring**: Automated risk assessment for orders
+
+#### **5. Chatbot Integration**
+- **Customer Support**: AI-powered customer service automation
+- **Order Status Inquiries**: Automated order status updates
+- **FAQ Handling**: Intelligent response to common questions
+
+#### **6. Recommendation Engine**
+- **Product Recommendations**: Personalized product suggestions
+- **Cross-selling**: AI-driven cross-selling opportunities
+- **Inventory Optimization**: Smart inventory management recommendations
 
 ## ✨ Features Implemented
 

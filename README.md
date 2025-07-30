@@ -202,29 +202,6 @@ The CRM includes an intelligent auto-seeding system that:
 - `POST /api/users` - Create user (Admin only)
 - `PUT /api/users/:id` - Update user (Admin only)
 
-## 🏗 Architecture Highlights
-
-### **Scalability**
-- Modular code structure
-- Environment-based configuration
-- Database indexing for performance
-- API rate limiting
-- Error handling and logging
-
-### **Fault Tolerance**
-- Health checks for all services
-- Graceful startup sequence
-- Automatic retry mechanisms
-- Data validation and sanitization
-- Graceful shutdown handling
-
-### **Security**
-- JWT-based authentication
-- Role-based access control
-- Input validation and sanitization
-- CORS configuration
-- Helmet.js security headers
-
 ## 🛠 Development
 
 ### **Local Development**
@@ -386,39 +363,6 @@ docker-compose exec mongodb mongosh -u admin -p password123 --authenticationData
 # View database collections
 docker-compose exec mongodb mongosh -u admin -p password123 --authenticationDatabase admin crm --eval "show collections"
 ```
-
-## 🎯 **Demo Features to Highlight**
-
-### **1. Authentication & Security**
-- JWT token-based authentication
-- Role-based access control
-- Secure password hashing
-- Input validation and sanitization
-
-### **2. Order Management**
-- Multi-platform order aggregation
-- Advanced filtering and search
-- Real-time status updates
-- Audit trail for changes
-
-### **3. Analytics & Reporting**
-- Real-time dashboard metrics
-- Interactive charts and graphs
-- Platform performance analysis
-- Revenue and order trends
-
-### **4. User Management**
-- Role-based permissions
-- User activity tracking
-- Admin controls
-- Security best practices
-
-### **5. Technical Excellence**
-- Containerized deployment
-- Auto-seeding system
-- Health checks
-- Error handling
-- Scalable architecture
 
 ## 🤝 Contributing
 
