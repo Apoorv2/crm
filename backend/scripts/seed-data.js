@@ -54,18 +54,18 @@ const sampleOrders = [
     items: [
       {
         productId: 'PROD-001',
-        name: 'Wireless Headphones',
-        quantity: 2,
-        unitPrice: 1500,
-        totalPrice: 3000,
-        sku: 'WH-001',
-        category: 'Electronics'
+        name: 'Diamond Huggie Hoop Earrings',
+        quantity: 1,
+        unitPrice: 3500,
+        totalPrice: 3500,
+        sku: 'DHH-001',
+        category: 'Hoops'
       }
     ],
-    subtotal: 3000,
-    tax: 540,
+    subtotal: 3500,
+    tax: 630,
     discount: 0,
-    total: 3640,
+    total: 4130,
     currency: 'INR',
     shipping: {
       method: 'Express',
@@ -98,27 +98,27 @@ const sampleOrders = [
     items: [
       {
         productId: 'PROD-002',
-        name: 'Organic Bananas',
-        quantity: 5,
-        unitPrice: 80,
-        totalPrice: 400,
-        sku: 'OB-001',
-        category: 'Groceries'
+        name: 'Golden Flutter Studs',
+        quantity: 1,
+        unitPrice: 1800,
+        totalPrice: 1800,
+        sku: 'GFS-001',
+        category: 'Studs'
       },
       {
         productId: 'PROD-003',
-        name: 'Fresh Milk',
-        quantity: 2,
-        unitPrice: 60,
-        totalPrice: 120,
-        sku: 'FM-001',
-        category: 'Dairy'
+        name: 'Delicate Pendant Necklace',
+        quantity: 1,
+        unitPrice: 2200,
+        totalPrice: 2200,
+        sku: 'DPN-001',
+        category: 'Necklaces'
       }
     ],
-    subtotal: 520,
-    tax: 94,
-    discount: 20,
-    total: 644,
+    subtotal: 4000,
+    tax: 720,
+    discount: 200,
+    total: 4520,
     currency: 'INR',
     shipping: {
       method: 'Quick Delivery',
@@ -150,18 +150,18 @@ const sampleOrders = [
     items: [
       {
         productId: 'PROD-004',
-        name: 'Organic Honey',
+        name: 'Pearl Drape Drops',
         quantity: 1,
-        unitPrice: 500,
-        totalPrice: 500,
-        sku: 'OH-001',
-        category: 'Organic'
+        unitPrice: 2600,
+        totalPrice: 2600,
+        sku: 'PDD-001',
+        category: 'Drops'
       }
     ],
-    subtotal: 500,
-    tax: 90,
+    subtotal: 2600,
+    tax: 468,
     discount: 0,
-    total: 670,
+    total: 3068,
     currency: 'INR',
     shipping: {
       method: 'Standard',
@@ -193,18 +193,18 @@ const sampleOrders = [
     items: [
       {
         productId: 'PROD-005',
-        name: 'Smartphone',
+        name: 'Tennis Bracelet',
         quantity: 1,
-        unitPrice: 25000,
-        totalPrice: 25000,
-        sku: 'SP-001',
-        category: 'Electronics'
+        unitPrice: 4500,
+        totalPrice: 4500,
+        sku: 'TB-001',
+        category: 'Bracelets'
       }
     ],
-    subtotal: 25000,
-    tax: 4500,
-    discount: 1000,
-    total: 28500,
+    subtotal: 4500,
+    tax: 810,
+    discount: 300,
+    total: 5010,
     currency: 'INR',
     shipping: {
       method: 'Free Delivery',
@@ -236,21 +236,21 @@ const sampleOrders = [
     items: [
       {
         productId: 'PROD-006',
-        name: 'Pizza Margherita',
-        quantity: 2,
-        unitPrice: 400,
-        totalPrice: 800,
-        sku: 'PM-001',
-        category: 'Food'
+        name: 'Statement Cocktail Ring',
+        quantity: 1,
+        unitPrice: 3800,
+        totalPrice: 3800,
+        sku: 'SCR-001',
+        category: 'Rings'
       }
     ],
-    subtotal: 800,
-    tax: 144,
+    subtotal: 3800,
+    tax: 684,
     discount: 0,
-    total: 1004,
+    total: 4484,
     currency: 'INR',
     shipping: {
-      method: 'Food Delivery',
+      method: 'Premium Delivery',
       carrier: 'Swiggy Delivery'
     },
     syncStatus: 'synced',
@@ -277,18 +277,18 @@ const sampleOrders = [
     items: [
       {
         productId: 'PROD-007',
-        name: 'Laptop Stand',
+        name: 'Layered Chain Necklace',
         quantity: 1,
-        unitPrice: 1200,
-        totalPrice: 1200,
-        sku: 'LS-001',
-        category: 'Electronics'
+        unitPrice: 2800,
+        totalPrice: 2800,
+        sku: 'LCN-001',
+        category: 'Necklaces'
       }
     ],
-    subtotal: 1200,
-    tax: 216,
-    discount: 100,
-    total: 1316,
+    subtotal: 2800,
+    tax: 504,
+    discount: 150,
+    total: 3154,
     currency: 'INR',
     shipping: {
       method: 'Standard',
@@ -305,13 +305,13 @@ const sampleOrders = [
     platformOrderId: 'BLK-002',
     orderNumber: 'ORD-007',
     orderDate: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 days ago
-    status: 'dispatched',
+    status: 'confirmed',
     customer: {
-      name: 'David Lee',
-      email: 'david@example.com',
+      name: 'Sophie Chen',
+      email: 'sophie@example.com',
       phone: '+91-9876543216',
       address: {
-        street: '147 Birch St',
+        street: '555 Birch Ave',
         city: 'Kolkata',
         state: 'West Bengal',
         pincode: '700001',
@@ -321,23 +321,259 @@ const sampleOrders = [
     items: [
       {
         productId: 'PROD-008',
-        name: 'Fresh Vegetables',
-        quantity: 3,
-        unitPrice: 150,
-        totalPrice: 450,
-        sku: 'FV-001',
-        category: 'Groceries'
+        name: 'Earrings & Necklace Set',
+        quantity: 1,
+        unitPrice: 5200,
+        totalPrice: 5200,
+        sku: 'ENS-001',
+        category: 'Sets'
       }
     ],
-    subtotal: 450,
-    tax: 81,
-    discount: 0,
-    total: 531,
+    subtotal: 5200,
+    tax: 936,
+    discount: 400,
+    total: 5736,
     currency: 'INR',
     shipping: {
-      method: 'Quick Delivery',
+      method: 'Express',
       trackingNumber: 'TRK-006',
       estimatedDelivery: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+      carrier: 'Blinkit Delivery'
+    },
+    syncStatus: 'synced',
+    tags: []
+  },
+  // Additional jewelry orders for richer initial data
+  {
+    platform: 'amazon',
+    platformOrderId: 'AMZ-003',
+    orderNumber: 'ORD-008',
+    orderDate: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000), // 4 days ago
+    status: 'processing',
+    customer: {
+      name: 'Priya Sharma',
+      email: 'priya@example.com',
+      phone: '+91-9876543217',
+      address: {
+        street: '789 Rose Garden',
+        city: 'Ahmedabad',
+        state: 'Gujarat',
+        pincode: '380001',
+        country: 'India'
+      }
+    },
+    items: [
+      {
+        productId: 'PROD-009',
+        name: 'Eyeconic 925 Silver Studs',
+        quantity: 1,
+        unitPrice: 1200,
+        totalPrice: 1200,
+        sku: 'ESS-001',
+        category: 'Studs'
+      }
+    ],
+    subtotal: 1200,
+    tax: 216,
+    discount: 0,
+    total: 1416,
+    currency: 'INR',
+    shipping: {
+      method: 'Standard',
+      trackingNumber: 'TRK-007',
+      estimatedDelivery: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+      carrier: 'Amazon Logistics'
+    },
+    syncStatus: 'synced',
+    tags: []
+  },
+  {
+    platform: 'flipkart',
+    platformOrderId: 'FLP-002',
+    orderNumber: 'ORD-009',
+    orderDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000), // 6 days ago
+    status: 'delivered',
+    customer: {
+      name: 'Rahul Kumar',
+      email: 'rahul@example.com',
+      phone: '+91-9876543218',
+      address: {
+        street: '456 Lotus Lane',
+        city: 'Jaipur',
+        state: 'Rajasthan',
+        pincode: '302001',
+        country: 'India'
+      }
+    },
+    items: [
+      {
+        productId: 'PROD-010',
+        name: 'Tiny Sunbeam Loops',
+        quantity: 1,
+        unitPrice: 2200,
+        totalPrice: 2200,
+        sku: 'TSL-001',
+        category: 'Hoops'
+      },
+      {
+        productId: 'PROD-011',
+        name: 'Charm Bracelet',
+        quantity: 1,
+        unitPrice: 3200,
+        totalPrice: 3200,
+        sku: 'CB-001',
+        category: 'Bracelets'
+      }
+    ],
+    subtotal: 5400,
+    tax: 972,
+    discount: 300,
+    total: 6072,
+    currency: 'INR',
+    shipping: {
+      method: 'Express',
+      trackingNumber: 'TRK-008',
+      estimatedDelivery: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
+      actualDelivery: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
+      carrier: 'Flipkart Logistics'
+    },
+    syncStatus: 'synced',
+    tags: []
+  },
+  {
+    platform: 'organic',
+    platformOrderId: 'ORG-002',
+    orderNumber: 'ORD-010',
+    orderDate: new Date(Date.now() - 9 * 24 * 60 * 60 * 1000), // 9 days ago
+    status: 'confirmed',
+    customer: {
+      name: 'Anjali Patel',
+      email: 'anjali@example.com',
+      phone: '+91-9876543219',
+      address: {
+        street: '321 Tulip Street',
+        city: 'Lucknow',
+        state: 'Uttar Pradesh',
+        pincode: '226001',
+        country: 'India'
+      }
+    },
+    items: [
+      {
+        productId: 'PROD-012',
+        name: 'Gold Bow and Tassel Drop Earrings',
+        quantity: 1,
+        unitPrice: 3200,
+        totalPrice: 3200,
+        sku: 'GBT-001',
+        category: 'Drops'
+      }
+    ],
+    subtotal: 3200,
+    tax: 576,
+    discount: 200,
+    total: 3576,
+    currency: 'INR',
+    shipping: {
+      method: 'Premium Delivery',
+      trackingNumber: 'TRK-009',
+      estimatedDelivery: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+      carrier: 'Courier Service'
+    },
+    syncStatus: 'synced',
+    tags: []
+  },
+  {
+    platform: 'swiggy',
+    platformOrderId: 'SWG-002',
+    orderNumber: 'ORD-011',
+    orderDate: new Date(Date.now() - 11 * 24 * 60 * 60 * 1000), // 11 days ago
+    status: 'dispatched',
+    customer: {
+      name: 'Vikram Singh',
+      email: 'vikram@example.com',
+      phone: '+91-9876543220',
+      address: {
+        street: '654 Marigold Road',
+        city: 'Chandigarh',
+        state: 'Punjab',
+        pincode: '160001',
+        country: 'India'
+      }
+    },
+    items: [
+      {
+        productId: 'PROD-013',
+        name: 'Stackable Ring Set',
+        quantity: 1,
+        unitPrice: 1500,
+        totalPrice: 1500,
+        sku: 'SRS-001',
+        category: 'Rings'
+      },
+      {
+        productId: 'PROD-014',
+        name: 'Delicate Anklet',
+        quantity: 1,
+        unitPrice: 1400,
+        totalPrice: 1400,
+        sku: 'DA-001',
+        category: 'Anklets'
+      }
+    ],
+    subtotal: 2900,
+    tax: 522,
+    discount: 150,
+    total: 3272,
+    currency: 'INR',
+    shipping: {
+      method: 'Standard',
+      trackingNumber: 'TRK-010',
+      estimatedDelivery: new Date(Date.now() - 9 * 24 * 60 * 60 * 1000),
+      carrier: 'Swiggy Delivery'
+    },
+    syncStatus: 'synced',
+    tags: []
+  },
+  {
+    platform: 'blinkit',
+    platformOrderId: 'BLK-003',
+    orderNumber: 'ORD-012',
+    orderDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // 7 days ago
+    status: 'delivered',
+    customer: {
+      name: 'Meera Reddy',
+      email: 'meera@example.com',
+      phone: '+91-9876543221',
+      address: {
+        street: '987 Jasmine Avenue',
+        city: 'Coimbatore',
+        state: 'Tamil Nadu',
+        pincode: '641001',
+        country: 'India'
+      }
+    },
+    items: [
+      {
+        productId: 'PROD-015',
+        name: 'Bohemian Collection Earrings',
+        quantity: 1,
+        unitPrice: 3400,
+        totalPrice: 3400,
+        sku: 'BCE-001',
+        category: 'Collections'
+      }
+    ],
+    subtotal: 3400,
+    tax: 612,
+    discount: 250,
+    total: 3762,
+    currency: 'INR',
+    shipping: {
+      method: 'Express',
+      trackingNumber: 'TRK-011',
+      estimatedDelivery: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
+      actualDelivery: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
       carrier: 'Blinkit Delivery'
     },
     syncStatus: 'synced',

@@ -26,5 +26,5 @@ EXPOSE 5000
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD node healthcheck.js
 
-# Start the application
+# Start the application with auto-seeding
 CMD ["npm", "start"] 

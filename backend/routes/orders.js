@@ -27,6 +27,8 @@ router.get('/', authenticateToken, requirePermission('view_orders'), [
   query('status').optional().isIn(['pending', 'confirmed', 'processing', 'dispatched', 'delivered', 'cancelled', 'returned']),
   query('startDate').optional().isISO8601(),
   query('endDate').optional().isISO8601(),
+  query('dateFrom').optional().isISO8601(),
+  query('dateTo').optional().isISO8601(),
   query('search').optional().isString(),
   query('sortBy').optional().isIn(['orderDate', 'total', 'status', 'platform']),
   query('sortOrder').optional().isIn(['asc', 'desc'])
@@ -44,6 +46,8 @@ router.get('/', authenticateToken, requirePermission('view_orders'), [
       status,
       startDate,
       endDate,
+      dateFrom,
+      dateTo,
       search,
       sortBy = 'orderDate',
       sortOrder = 'desc'
@@ -55,11 +59,14 @@ router.get('/', authenticateToken, requirePermission('view_orders'), [
     if (platform) filter.platform = platform;
     if (status) filter.status = status;
 
-    // Date range filter
-    if (startDate || endDate) {
+    // Date range filter - support both parameter naming conventions
+    const startDateParam = startDate || dateFrom;
+    const endDateParam = endDate || dateTo;
+    
+    if (startDateParam || endDateParam) {
       filter.orderDate = {};
-      if (startDate) filter.orderDate.$gte = new Date(startDate);
-      if (endDate) filter.orderDate.$lte = new Date(endDate);
+      if (startDateParam) filter.orderDate.$gte = new Date(startDateParam);
+      if (endDateParam) filter.orderDate.$lte = new Date(endDateParam);
     }
 
     // Search filter

@@ -1,195 +1,242 @@
-# Palmonas CRM - Admin Portal
+# 🏢 Palmonas CRM - Admin Portal for Multi-Platform Order Management
 
-A comprehensive admin CRM portal for managing customer orders from multiple e-commerce platforms (Amazon, Blinkit, Organic website, etc.).
+A comprehensive **Admin CRM Portal** for managing customer orders from multiple e-commerce platforms (Amazon, Blinkit, Organic, Flipkart, Swiggy). Built as an MVP with modern full-stack technologies and containerized deployment.
+
+## 🚀 Features
+
+### **Core Features**
+- **Unified Order Dashboard** - Centralized view of all platform orders
+- **Advanced Search & Filtering** - By date, platform, status, customer
+- **Order Status Management** - Update and track order statuses
+- **Real-time Analytics** - Charts, metrics, and performance insights
+- **User Management** - Role-based access control (Admin, Support, Read-only)
+- **Multi-Platform Support** - Amazon, Blinkit, Organic, Flipkart, Swiggy
+
+### **Technical Features**
+- **Auto-Seeding** - Database automatically populated with sample data on startup
+- **Health Checks** - Robust startup sequence with dependency management
+- **Persistent Data** - MongoDB data persistence across restarts
+- **Security** - JWT authentication, role-based permissions, input validation
+- **Scalable Architecture** - Modular design ready for production scaling
+
+## 🛠 Tech Stack
+
+### **Frontend**
+- **React 18** with TypeScript
+- **Material-UI** for modern UI components
+- **Chart.js** for analytics visualization
+- **React Router** for navigation
+- **Axios** for API communication
+
+### **Backend**
+- **Node.js** with Express.js
+- **MongoDB** with Mongoose ODM
+- **JWT** for authentication
+- **bcryptjs** for password hashing
+- **Express Validator** for input validation
+
+### **Infrastructure**
+- **Docker** containerization
+- **Docker Compose** for multi-service orchestration
+- **MongoDB** with persistent storage
+- **Health checks** for reliable startup
+
+## 📋 Prerequisites
+
+- **Docker** and **Docker Compose**
+- **Git** for cloning the repository
+- **Node.js 18+** (for local development)
 
 ## 🚀 Quick Start
 
-### Prerequisites
-- Docker and Docker Compose
-- Node.js 18+ (for local development)
-
-### Quick Setup
+### **1. Clone the Repository**
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd CRM
-
-# Build and start all services
-docker-compose up --build
-
-# Or run in background
-docker-compose up -d --build
+git clone https://github.com/Apoorv2/crm.git
+cd crm
 ```
 
-### Access the Application
+### **2. Start the Application**
+```bash
+docker-compose up -d
+```
+
+### **3. Access the Application**
 - **Frontend**: http://localhost:3002
 - **Backend API**: http://localhost:5000
 - **MongoDB**: localhost:27017
 
-### Seed Database
-```bash
-# Seed with sample data
-docker-compose exec backend npm run seed
-```
-
-### Default Login Credentials
-- **Admin**: admin@palmonas.com / admin123
-- **Support**: support@palmonas.com / support123
-- **Read-only**: readonly@palmonas.com / readonly123
-
-## 📁 Project Structure
+### **4. Login Credentials**
+The system automatically seeds the database with sample users:
 
 ```
-├── backend/                 # Node.js API server
-│   ├── models/             # MongoDB schemas
-│   ├── routes/             # API endpoints
-│   ├── middleware/         # Authentication & validation
-│   ├── scripts/            # Database scripts
-│   └── server.js           # Main server file
-├── frontend/               # React application
-│   ├── src/
-│   │   ├── components/     # Reusable components
-│   │   ├── pages/          # Page components
-│   │   ├── contexts/       # React contexts
-│   │   └── App.tsx         # Main app component
-│   └── public/             # Static files
-├── docker-compose.yml      # Docker orchestration
-├── .env.example           # Environment variables template
-└── README.md              # This file
+Admin User:
+- Email: admin@palmonas.com
+- Password: admin123
+
+Support User:
+- Email: support@palmonas.com
+- Password: support123
+
+Read-only User:
+- Email: readonly@palmonas.com
+- Password: readonly123
 ```
 
-## 🔌 API Endpoints
+## 🔧 Auto-Seeding Feature
 
-### Authentication
+The CRM includes an intelligent auto-seeding system that:
+
+- **Automatically detects** if the database is empty
+- **Populates sample data** including users and orders
+- **Ensures consistent startup** regardless of container restarts
+- **Maintains data integrity** with proper password hashing
+- **Provides immediate access** to all features
+
+### **Sample Data Includes:**
+- **3 Users** with different roles (Admin, Support, Read-only)
+- **12 Sample Orders** across all platforms with recent dates
+- **15+ Jewelry Products** including earrings, necklaces, rings, bracelets, and sets
+- **Realistic jewelry data** with customers, items, and statuses
+- **Analytics-ready data** for dashboard and reports
+
+## 📊 API Endpoints
+
+### **Authentication**
 - `POST /api/auth/login` - User login
-- `POST /api/auth/logout` - User logout
+- `POST /api/auth/register` - User registration (Admin only)
 - `GET /api/auth/me` - Get current user profile
 
-### Orders
-- `GET /api/orders` - Get all orders with filtering
-- `GET /api/orders/:id` - Get order by ID
-- `POST /api/orders` - Create new order
-- `PUT /api/orders/:id` - Update order
+### **Orders**
+- `GET /api/orders` - List orders with filtering
+- `GET /api/orders/:id` - Get specific order
 - `PUT /api/orders/:id/status` - Update order status
-- `DELETE /api/orders/:id` - Delete order
+- `POST /api/orders` - Create new order
 
-### Analytics
-- `GET /api/analytics/dashboard` - Dashboard statistics
-- `GET /api/analytics/revenue` - Revenue analytics
+### **Analytics**
+- `GET /api/analytics/dashboard` - Dashboard overview
+- `GET /api/analytics/trends` - Order and revenue trends
 - `GET /api/analytics/platforms` - Platform performance
-- `GET /api/analytics/trends` - Order trends
 
-### Users (Admin only)
-- `GET /api/users` - Get all users
-- `GET /api/users/:id` - Get user by ID
-- `PUT /api/users/:id` - Update user
-- `DELETE /api/users/:id` - Delete user
+### **Users**
+- `GET /api/users` - List users (Admin only)
+- `POST /api/users` - Create user (Admin only)
+- `PUT /api/users/:id` - Update user (Admin only)
 
 ## 🏗 Architecture Highlights
 
-### Scalability Features
-- **Modular Design**: Easy to split into microservices
-- **Database Indexing**: Optimized queries for performance
-- **Connection Pooling**: Efficient database connections
-- **Rate Limiting**: API protection against abuse
-- **Health Checks**: Container health monitoring
+### **Scalability**
+- Modular code structure
+- Environment-based configuration
+- Database indexing for performance
+- API rate limiting
+- Error handling and logging
 
-### Fault Tolerance
-- **Error Handling**: Comprehensive error responses
-- **Input Validation**: Request data validation
-- **Graceful Shutdown**: Proper cleanup on exit
-- **Retry Mechanisms**: Built-in retry logic
-- **Circuit Breaker**: External API protection (ready for implementation)
+### **Fault Tolerance**
+- Health checks for all services
+- Graceful startup sequence
+- Automatic retry mechanisms
+- Data validation and sanitization
+- Graceful shutdown handling
 
-### Security
-- **JWT Authentication**: Secure token-based auth
-- **Role-Based Access**: Granular permissions
-- **Input Sanitization**: XSS and injection protection
-- **CORS Configuration**: Cross-origin security
-- **Helmet.js**: Security headers
+### **Security**
+- JWT-based authentication
+- Role-based access control
+- Input validation and sanitization
+- CORS configuration
+- Helmet.js security headers
 
-## 🧪 Development
+## 🛠 Development
 
-### Local Development
+### **Local Development**
 ```bash
-# Backend development
-cd backend
-npm install
-npm run dev
+# Start services
+docker-compose up -d
 
-# Frontend development
-cd frontend
-npm install
-npm start
+# View logs
+docker-compose logs -f
+
+# Access backend shell
+docker-compose exec backend sh
+
+# Access frontend shell
+docker-compose exec frontend sh
+
+# Manual database seeding
+docker-compose exec backend npm run seed
 ```
 
-### Database Seeding
-```bash
-# Seed with sample data
-cd backend
-npm run seed
+### **Database Schema**
+
+#### **User Model**
+```javascript
+{
+  name: String,
+  email: String (unique),
+  password: String (hashed),
+  role: String (admin/support/readonly),
+  isActive: Boolean,
+  permissions: [String],
+  lastLogin: Date,
+  createdAt: Date
+}
 ```
 
-### Testing
-```bash
-# Backend tests
-cd backend
-npm test
-
-# Frontend tests
-cd frontend
-npm test
+#### **Order Model**
+```javascript
+{
+  orderNumber: String (unique),
+  platform: String,
+  platformOrderId: String,
+  customer: {
+    name: String,
+    email: String,
+    phone: String,
+    address: Object
+  },
+  items: [{
+    name: String,
+    quantity: Number,
+    unitPrice: Number,
+    totalPrice: Number
+  }],
+  status: String,
+  total: Number,
+  orderDate: Date,
+  statusHistory: [Object]
+}
 ```
-
-## 📊 Database Schema
-
-### Users Collection
-- Email, password, name, role
-- Permissions array
-- Active status and timestamps
-
-### Orders Collection
-- Platform identification
-- Customer information
-- Product details
-- Financial data
-- Status tracking
-- Audit trail
 
 ## 🔧 Configuration
 
-### Environment Variables
-- `MONGODB_URI` - Database connection string
-- `JWT_SECRET` - JWT signing secret
-- `PORT` - Server port (default: 5000)
-- `NODE_ENV` - Environment (development/production)
+### **Environment Variables**
+Create a `.env` file based on `.env.example`:
 
-### Platform Integration
-- Amazon API credentials
-- Blinkit API credentials
-- Other platform configurations
+```env
+# Database
+MONGODB_URI=mongodb://admin:password123@mongodb:27017/crm?authSource=admin
+
+# JWT
+JWT_SECRET=your-super-secret-jwt-key-change-in-production
+
+# Server
+PORT=5000
+NODE_ENV=development
+```
 
 ## 🚀 Deployment
 
-### Production Deployment
-1. Set production environment variables
-2. Build Docker images
-3. Deploy with Docker Compose or Kubernetes
-4. Set up reverse proxy (Nginx)
-5. Configure SSL certificates
+### **Production Deployment**
+1. Update environment variables
+2. Set `NODE_ENV=production`
+3. Use production MongoDB instance
+4. Configure proper JWT secrets
+5. Set up SSL certificates
 
-### Scaling Considerations
-- Horizontal scaling with load balancer
-- Database read replicas
-- Redis caching layer
-- CDN for static assets
-
-## 📈 Monitoring & Logging
-
-- **Health Checks**: `/health` endpoint
-- **Request Logging**: Morgan middleware
-- **Error Tracking**: Centralized error handling
-- **Performance Monitoring**: Ready for APM integration
+### **Monitoring**
+- Health check endpoints available
+- Log aggregation recommended
+- Database monitoring
+- Performance metrics
 
 ## 🤝 Contributing
 
@@ -207,10 +254,9 @@ This project is licensed under the MIT License.
 
 For support and questions:
 - Check the documentation
-- Review the API endpoints
-- Check the logs for errors
-- Contact the development team
+- Review the technical specifications
+- Open an issue on GitHub
 
 ---
 
-**Built with ❤️ for Palmonas** 
+**Built with ❤️ for Palmonas - Unified Order Management Made Simple** 
